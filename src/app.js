@@ -1,4 +1,5 @@
 import express from 'express'
+import path from 'path'
 import authRouter from './routes/auth.route.js'
 import musicRouter from './routes/music.route.js'
 import cookieParser from 'cookie-parser'
@@ -22,5 +23,16 @@ app.use('/api/user',userRouter)
 import errorHandler from './middlewares/error.middleware.js'
 
 app.use(errorHandler)
+
+// Serve client build in production (useful for Vercel / production deployments)
+if (process.env.NODE_ENV === 'production') {
+	const clientDist = path.join(process.cwd(), 'client', 'dist')
+	app.use(express.static(clientDist))
+
+	// SPA fallback - serve index.html for unknown GET routes
+	app.get('*', (req, res) => {
+		res.sendFile(path.join(clientDist, 'index.html'))
+	})
+}
 
 export default app;
