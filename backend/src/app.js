@@ -24,9 +24,9 @@ import errorHandler from './middlewares/error.middleware.js'
 
 app.use(errorHandler)
 
-// Serve client build in production (useful for Vercel / production deployments)
+// Serve frontend build in production (useful for Vercel / production deployments)
 if (process.env.NODE_ENV === 'production') {
-	const clientDist = path.join(process.cwd(), 'client', 'dist')
+	const clientDist = path.join(process.cwd(), 'frontend', 'dist')
 	app.use(express.static(clientDist))
 
 	// SPA fallback - serve index.html for unknown GET routes

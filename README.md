@@ -1,10 +1,11 @@
 npm i# Rhythm Cloud
 
-Backend + frontend for a simple music platform.
+Backend and frontend are now separated into `backend/` and `frontend/` folders.
 
 Run backend:
 
 ```bash
+cd backend
 npm install
 npm run dev
 ```
@@ -12,6 +13,17 @@ npm run dev
 Run frontend (in another terminal):
 
 ```bash
+cd frontend
+npm install
+npm run dev
+```
+
+Or from the root folder:
+
+```bash
+npm run backend:install
+npm run frontend:install
+npm run dev
 npm run client
 ```
 
