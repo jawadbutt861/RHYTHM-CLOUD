@@ -18,6 +18,8 @@ pids/
 # Build output
 dist/
 build/
+/backend/dist/
+/frontend/dist/
 
 # Environment files
 .env
@@ -29,9 +31,9 @@ build/
 Thumbs.db
 
 # Vite
-/client/dist/
-/client/node_modules/
-/client/.vite
+/frontend/dist/
+/frontend/node_modules/
+/frontend/.vite
 
 # Editor directories and files
 .vscode/

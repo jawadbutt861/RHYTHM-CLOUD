@@ -27,6 +27,12 @@ npm run dev
 npm run client
 ```
 
+Production checklist:
+- Build frontend with `cd frontend && npm run build`
+- Start backend with `cd backend && npm start`
+- Use a production-ready Node process manager like `pm2` or similar
+- Set `NODE_ENV=production` and provide a valid `.env` with DB and auth secrets
+
 API docs: `GET /api/docs`
 
 Notes for resume:
