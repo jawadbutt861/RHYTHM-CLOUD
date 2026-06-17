@@ -271,29 +271,33 @@ const refreshAccessToken = catchAsync(async (req, res) => {
         throw new ApiError(401, "Refresh token missing");
     }
 
+    let decoded;
     try {
-        const decoded = jwt.verify(refreshToken, process.env.JWT_SECRET);
-        
-        const user = await userModel.findById(decoded.id);
-        if (!user || user.refreshToken !== refreshToken) {
-            throw new ApiError(401, "Invalid refresh token");
-        }
-
-        const tokens = generateTokens(user);
-        user.refreshToken = tokens.refreshToken;
-        await user.save();
-
-        res.cookie("accessToken", tokens.accessToken, getCookieOptions(ACCESS_TOKEN_EXPIRY));
-        res.cookie("refreshToken", tokens.refreshToken, getCookieOptions(REFRESH_TOKEN_EXPIRY));
-        res.cookie("token", tokens.accessToken, getCookieOptions(ACCESS_TOKEN_EXPIRY));
-
-        res.status(200).json({
-            success: true,
-            message: "Access token refreshed successfully"
-        });
+        decoded = jwt.verify(refreshToken, process.env.JWT_SECRET);
     } catch (err) {
         throw new ApiError(401, "Invalid or expired refresh token");
     }
+
+    const user = await userModel.findById(decoded.id).select("+refreshToken");
+    if (!user) {
+        throw new ApiError(401, "User not found");
+    }
+    if (user.refreshToken !== refreshToken) {
+        throw new ApiError(401, "Refresh token mismatch — please log in again");
+    }
+
+    const tokens = generateTokens(user);
+    user.refreshToken = tokens.refreshToken;
+    await user.save();
+
+    res.cookie("accessToken", tokens.accessToken, getCookieOptions(ACCESS_TOKEN_EXPIRY));
+    res.cookie("refreshToken", tokens.refreshToken, getCookieOptions(REFRESH_TOKEN_EXPIRY));
+    res.cookie("token", tokens.accessToken, getCookieOptions(ACCESS_TOKEN_EXPIRY));
+
+    res.status(200).json({
+        success: true,
+        message: "Access token refreshed successfully"
+    });
 });
 
 export {
