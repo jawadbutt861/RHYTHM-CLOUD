@@ -9,7 +9,7 @@ async function uploadFile(file) {
     const result = await ImageKitClient.files.upload({
         file,
         fileName: "music_" + Date.now(),
-        folder: "yt-complete-backend/music"
+        folder: "Rhythm Cloud/music"
     })
 
     return result;
