@@ -1,51 +1,31 @@
-# Node dependencies
+# Dependencies
 node_modules/
+package-lock.json
+yarn.lock
 
-# Logs
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
-logs/
-*.log
-
-# Runtime data
-pids/
-*.pid
-*.seed
-*.pid.lock
-
-# Build output
-dist/
-build/
-/backend/dist/
-/frontend/dist/
-
-# Environment files
+# Environment variables
 .env
 .env.local
 .env.*.local
 
-# OS files
-.DS_Store
-Thumbs.db
-
-# Vite
-/frontend/dist/
-/frontend/node_modules/
-/frontend/.vite
-
-# Editor directories and files
+# IDE and editor files
 .vscode/
 .idea/
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
+*.swp
+*.swo
+*~
+.DS_Store
 
-# Misc
-*.tgz
-*.gz
-*.zip
-*.tmp
+# Build files
+dist/
+build/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS files
+Thumbs.db

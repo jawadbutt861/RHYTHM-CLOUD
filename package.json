@@ -1,19 +1,26 @@
 {
-  "name": "rhythm-cloud",
+  "name": "complete-backend",
   "version": "1.0.0",
-  "private": true,
+  "description": "",
+  "main": "index.js",
   "scripts": {
-    "backend:install": "cd backend && npm install",
-    "frontend:install": "cd frontend && npm install",
-    "install-all": "npm run backend:install && npm run frontend:install",
-    "start": "cd backend && npm start",
-    "dev": "cd backend && npm run dev",
-    "client": "cd frontend && npm run dev",
-    "build": "cd frontend && npm run build",
-    "vercel-build": "cd frontend && npm install && npm run build",
-    "test": "cd backend && npm test"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "npx nodemon server.js",
+    "start": "node server.js"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "@imagekit/nodejs": "^7.1.0",
+    "bcryptjs": "^3.0.2",
+    "cookie-parser": "^1.4.7",
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "mognoose": "^1.0.3",
+    "mongoose": "^8.24.0",
+    "multer": "^2.0.2"
+  }
 }
