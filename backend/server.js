@@ -12,7 +12,7 @@ app.get("/", (req, res) => {
 
 // sirf local machine par chalega
 if (process.env.NODE_ENV !== "production") {
-  app.listen(5000, () => {
-    console.log("Server running on port 5000");
+  app.listen(process.env.PORT, () => {
+    console.log("Server running on port 3000");
   });
 }
