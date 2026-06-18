@@ -2,17 +2,15 @@ import 'dotenv/config.js';
 import app from './src/app.js';
 import connectDB from './src/db/db.js';
 
-
 await connectDB();
 
-
-// sirf local machine par chalega
-if (process.env.NODE_ENV !== "production") {
-  app.listen(process.env.PORT, () => {
-    console.log("Server running on port 3000");
-  });
+// Only bind to a port in local dev — Vercel invokes the exported handler directly
+if (process.env.NODE_ENV !== 'production') {
+    const PORT = process.env.PORT || 3000;
+    app.listen(PORT, () => {
+        console.log(`Server running on port ${PORT}`);
+    });
 }
 
-// Required for Vercel's @vercel/node builder: it needs a default-exported
-// request handler to invoke. Express apps work directly as that handler.
+// Vercel serverless entry point — exports the Express app as the request handler
 export default app;
