@@ -6,7 +6,13 @@ import connectDB from './src/db/db.js';
 await connectDB();
 
 
+app.get("/", (req, res) => {
+  res.send("Running");
+});
 
-app.listen(3000, () => {
-    console.log('Server is running on port 3000');
-})
+// sirf local machine par chalega
+if (process.env.NODE_ENV !== "production") {
+  app.listen(5000, () => {
+    console.log("Server running on port 5000");
+  });
+}
