@@ -8,7 +8,7 @@
     "backend": {
       "root": "backend",
       "routePrefix": "/api",
-      "runtime": "nodejs22.x",
+      
       "entrypoint": "api/index.js"
     }
   }
