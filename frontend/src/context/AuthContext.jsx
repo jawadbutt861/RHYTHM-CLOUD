@@ -1,8 +1,6 @@
 import React, { createContext, useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 
-// Base URL from .env — all relative /api/... calls resolve against this
-axios.defaults.baseURL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000';
 // Automatically send cookies with every request
 axios.defaults.withCredentials = true;
 
